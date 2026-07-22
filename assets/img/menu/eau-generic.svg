@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <rect width="500" height="500" fill="#ffffff"/>
+
+  <!-- Dark stone plate -->
+  <path d="M120 388 Q115 340 175 335 L325 330 Q385 335 378 385 Q373 415 320 418 L180 420 Q125 418 120 388 Z" fill="#161616"/>
+  <path d="M140 355 Q195 348 250 348 Q305 348 350 358" stroke="#2a2a2a" stroke-width="3" fill="none" opacity="0.6"/>
+
+  <!-- Bottle -->
+  <g>
+    <path d="M228 100 h44 v28 c0 6 6 10 12 14 c14 9 20 24 20 42 v170 c0 14 -11 24 -25 24 h-58 c-14 0 -25 -10 -25 -24 v-170 c0 -18 6 -33 20 -42 c6 -4 12 -8 12 -14 z"
+          fill="#bfe3f2" opacity="0.85"/>
+    <path d="M228 100 h44 v28 c0 6 6 10 12 14 c14 9 20 24 20 42 v170 c0 14 -11 24 -25 24 h-58 c-14 0 -25 -10 -25 -24 v-170 c0 -18 6 -33 20 -42 c6 -4 12 -8 12 -14 z"
+          fill="url(#bottleShine)"/>
+    <rect x="222" y="86" width="56" height="20" rx="6" fill="#2f6fa3"/>
+    <rect x="218" y="76" width="64" height="16" rx="5" fill="#3d81b6"/>
+
+    <!-- label -->
+    <rect x="205" y="255" width="90" height="70" rx="6" fill="#ffffff" stroke="#2f6fa3" stroke-width="2"/>
+    <line x1="215" y1="275" x2="285" y2="275" stroke="#2f6fa3" stroke-width="2"/>
+    <line x1="215" y1="290" x2="285" y2="290" stroke="#2f6fa3" stroke-width="2" opacity="0.6"/>
+    <line x1="215" y1="305" x2="270" y2="305" stroke="#2f6fa3" stroke-width="2" opacity="0.6"/>
+  </g>
+
+  <defs>
+    <linearGradient id="bottleShine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.5"/>
+      <stop offset="0.4" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="1" stop-color="#3d7a9e" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Spain flag badge -->
+  <g transform="translate(378,140)">
+    <circle cx="0" cy="0" r="34" fill="#ffffff" stroke="#d4af37" stroke-width="3"/>
+    <clipPath id="flagClip2"><circle cx="0" cy="0" r="30"/></clipPath>
+    <g clip-path="url(#flagClip2)">
+      <rect x="-30" y="-30" width="60" height="60" fill="#AA151B"/>
+      <rect x="-30" y="-15" width="60" height="30" fill="#F1BF00"/>
+    </g>
+  </g>
+</svg>

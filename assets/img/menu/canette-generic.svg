@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <rect width="500" height="500" fill="#ffffff"/>
+
+  <!-- Dark stone plate -->
+  <ellipse cx="250" cy="400" rx="170" ry="38" fill="#0e0e0e"/>
+  <path d="M95 388 Q90 340 150 335 L350 330 Q415 335 405 385 Q400 418 340 420 L165 422 Q100 420 95 388 Z" fill="#161616"/>
+  <path d="M110 355 Q160 348 250 348 Q340 348 390 358" stroke="#2a2a2a" stroke-width="3" fill="none" opacity="0.6"/>
+
+  <!-- Can 1 (red) -->
+  <g>
+    <rect x="140" y="200" width="70" height="150" rx="14" fill="#c23b32"/>
+    <rect x="140" y="200" width="70" height="150" rx="14" fill="url(#shine)"/>
+    <ellipse cx="175" cy="200" rx="35" ry="10" fill="#e2564b"/>
+    <ellipse cx="175" cy="200" rx="35" ry="10" fill="none" stroke="#8f2a23" stroke-width="2"/>
+    <ellipse cx="175" cy="345" rx="35" ry="9" fill="#8f2a23"/>
+    <rect x="150" y="250" width="50" height="34" rx="6" fill="#ffffff" opacity="0.9"/>
+  </g>
+
+  <!-- Can 2 (orange) - front/tallest -->
+  <g>
+    <rect x="215" y="175" width="76" height="175" rx="15" fill="#e08328"/>
+    <rect x="215" y="175" width="76" height="175" rx="15" fill="url(#shine)"/>
+    <ellipse cx="253" cy="175" rx="38" ry="10" fill="#f2a24f"/>
+    <ellipse cx="253" cy="175" rx="38" ry="10" fill="none" stroke="#a85f15" stroke-width="2"/>
+    <ellipse cx="253" cy="350" rx="38" ry="9" fill="#a85f15"/>
+    <circle cx="253" cy="180" r="6" fill="#7a4610"/>
+    <rect x="228" y="235" width="52" height="36" rx="6" fill="#ffffff" opacity="0.9"/>
+  </g>
+
+  <!-- Can 3 (green) -->
+  <g>
+    <rect x="300" y="205" width="68" height="145" rx="14" fill="#3f8f5b"/>
+    <rect x="300" y="205" width="68" height="145" rx="14" fill="url(#shine)"/>
+    <ellipse cx="334" cy="205" rx="34" ry="10" fill="#57ab73"/>
+    <ellipse cx="334" cy="205" rx="34" ry="10" fill="none" stroke="#245e39" stroke-width="2"/>
+    <ellipse cx="334" cy="350" rx="34" ry="9" fill="#245e39"/>
+    <rect x="310" y="253" width="48" height="32" rx="6" fill="#ffffff" opacity="0.9"/>
+  </g>
+
+  <defs>
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.28"/>
+      <stop offset="0.35" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.12"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Spain flag badge -->
+  <g transform="translate(378,120)">
+    <circle cx="0" cy="0" r="34" fill="#ffffff" stroke="#d4af37" stroke-width="3"/>
+    <clipPath id="flagClip"><circle cx="0" cy="0" r="30"/></clipPath>
+    <g clip-path="url(#flagClip)">
+      <rect x="-30" y="-30" width="60" height="60" fill="#AA151B"/>
+      <rect x="-30" y="-15" width="60" height="30" fill="#F1BF00"/>
+    </g>
+  </g>
+</svg>

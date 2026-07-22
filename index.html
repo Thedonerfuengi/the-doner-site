@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE DONER Fuengirola — Kebab, Pide &amp; Grillades Turcs | Livraison &amp; À emporter</title>
+<meta name="description" content="THE DONER — restaurant de döner kebab turc authentique à Fuengirola (Los Boliches). Kebab, pide, grillades cuits à la pierre de lave, pain maison. Commande en ligne, livraison et à emporter, 7j/7.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://thedonerfuengi.com/">
+
+<!-- Réseaux sociaux / partage -->
+<meta property="og:type" content="restaurant">
+<meta property="og:site_name" content="THE DONER Fuengirola">
+<meta property="og:title" content="THE DONER Fuengirola — Kebab Turc Authentique">
+<meta property="og:description" content="Kebab, pide et grillades cuits à la pierre de lave, pain maison. Commande en ligne, livraison à Fuengirola.">
+<meta property="og:image" content="https://thedonerfuengi.com/assets/img/accueil.png">
+<meta property="og:url" content="https://thedonerfuengi.com/">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="THE DONER Fuengirola — Kebab Turc Authentique">
+<meta name="twitter:description" content="Kebab, pide et grillades cuits à la pierre de lave. Commande en ligne à Fuengirola.">
+<meta name="twitter:image" content="https://thedonerfuengi.com/assets/img/accueil.png">
+
+<!-- Référencement local -->
+<meta name="geo.region" content="ES-MA">
+<meta name="geo.placename" content="Fuengirola">
+<meta name="geo.position" content="36.5408546;-4.6213142">
+<meta name="ICBM" content="36.5408546, -4.6213142">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Données structurées Schema.org (fiche Google / recherche locale) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FastFoodRestaurant",
+  "name": "THE DONER Fuengirola",
+  "image": "https://thedonerfuengi.com/assets/img/accueil.png",
+  "logo": "https://thedonerfuengi.com/assets/img/logo.jpg",
+  "url": "https://thedonerfuengi.com/",
+  "telephone": "+34623618108",
+  "priceRange": "€€",
+  "servesCuisine": ["Turque", "Kebab", "Fast food"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle Jacinto Benavente 1",
+    "addressLocality": "Fuengirola",
+    "addressRegion": "Málaga",
+    "postalCode": "29640",
+    "addressCountry": "ES"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 36.5408546,
+    "longitude": -4.6213142
+  },
+  "hasMap": "https://share.google/VX0D3DO7TA8UNfpD1",
+  "sameAs": [
+    "https://share.google/VX0D3DO7TA8UNfpD1",
+    "https://www.instagram.com/thedonerfuengi",
+    "https://www.tiktok.com/@thedonerfuengi",
+    "https://www.snapchat.com/add/thedonerfuengii"
+  ],
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday"], "opens": "14:00", "closes": "02:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "15:30", "closes": "03:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "14:00", "closes": "03:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "14:00", "closes": "02:00" }
+  ],
+  "menu": "https://thedonerfuengi.com/#menu",
+  "acceptsReservations": "False",
+  "potentialAction": {
+    "@type": "OrderAction",
+    "target": "https://wa.me/34623618108",
+    "deliveryMethod": ["https://schema.org/OnSitePickup", "https://schema.org/DeliveryModeOwnFleet"]
+  }
+}
+</script>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<div id="cart-toast" class="cart-toast"></div>
+
+<header class="site-header" id="top">
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>🔥 100% FAIT MAISON</span>
+      <span>🥙 CUISSON À LA PIERRE DE LAVE</span>
+      <span>🇹🇷 RECETTE TURQUE AUTHENTIQUE</span>
+      <span>📍 FUENGIROLA</span>
+      <span>🔥 100% FAIT MAISON</span>
+      <span>🥙 CUISSON À LA PIERRE DE LAVE</span>
+      <span>🇹🇷 RECETTE TURQUE AUTHENTIQUE</span>
+      <span>📍 FUENGIROLA</span>
+    </div>
+  </div>
+  <div class="container header-inner">
+    <a href="#top" class="brand">
+      <img src="assets/img/logo.jpg" alt="THE DONER" class="brand-logo">
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#accueil">Accueil</a>
+      <a href="#histoire">L'histoire</a>
+      <a href="#menu">Menu</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="cart-btn" id="openCart" aria-label="Voir le panier">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="accueil">
+  <div class="hero-embers" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-logo-parallax reveal">
+      <div class="hero-logo-wrap">
+        <img src="assets/img/logo.jpg" alt="THE DONER" class="hero-logo">
+        <span class="hero-logo-shine" aria-hidden="true"></span>
+      </div>
+    </div>
+    <h1 class="hero-tagline reveal">THE DONER Fuengirola — Kebab &amp; grillades turcs cuits à la pierre de lave, pain maison</h1>
+    <div class="hero-cta reveal">
+      <a href="#menu" class="btn btn-gold">Voir le menu</a>
+      <a href="https://wa.me/34623618108" target="_blank" rel="noopener" class="btn btn-outline wa-cta">Commander sur WhatsApp</a>
+    </div>
+  </div>
+  <a href="#histoire" class="scroll-cue" aria-label="Défiler">↓</a>
+</section>
+
+<section class="story" id="histoire">
+  <div class="container story-inner">
+    <div class="story-flags reveal">
+      <span class="flag flag-fr" title="France"></span>
+      <span class="flag flag-tr" title="Turquie"></span>
+    </div>
+    <span class="eyebrow reveal">Notre histoire</span>
+    <h2 class="reveal">Une recette turque, un esprit fuengirolais</h2>
+    <p class="reveal">Chez THE DONER, la viande tourne lentement sur broche et cuit à la pierre de lave pour un goût fumé authentique. Pain maison pétri chaque jour, bulgur turc, sauces maison : tout est pensé pour un kebab généreux et sans compromis, servi en plein cœur de Fuengirola.</p>
+    <div class="story-badges">
+      <div class="badge"><strong>Pain maison</strong><span>pétri &amp; cuit sur place</span></div>
+      <div class="badge"><strong>Pierre de lave</strong><span>cuisson authentique</span></div>
+      <div class="badge"><strong>Bulgur turc</strong><span>recette traditionnelle</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-section" id="menu">
+  <div class="container">
+    <span class="eyebrow reveal">La carte</span>
+    <h2 class="section-title reveal">Notre carte</h2>
+    <p class="section-sub reveal">Ajoutez vos plats au panier, précisez vos envies, on s'occupe du reste.</p>
+
+    <img src="assets/img/entete.png" alt="Sélection de plats THE DONER" class="menu-banner reveal">
+
+    <div class="menu-tabs reveal" id="menuTabs"></div>
+    <div class="menu-panels" id="menuPanels"></div>
+  </div>
+</section>
+
+<section class="promo-video">
+  <div class="container">
+    <span class="eyebrow reveal">En vidéo</span>
+    <h2 class="section-title reveal">Découvrez THE DONER</h2>
+    <div class="video-wrap reveal">
+      <video id="promoVideo" controls muted loop playsinline preload="none" poster="assets/img/pub.png">
+        <source src="assets/video/the-doner-pub.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la lecture vidéo.
+      </video>
+      <button class="video-sound-btn" id="videoSoundBtn" aria-label="Activer le son">🔇 Son coupé — cliquez pour activer</button>
+    </div>
+  </div>
+</section>
+
+<section class="social-section" id="suivez-nous">
+  <div class="container">
+    <span class="eyebrow reveal">Réseaux sociaux</span>
+    <h2 class="section-title reveal">Suivez-nous</h2>
+    <p class="section-sub reveal">Nouveautés, coulisses et offres exclusives — un clic pour ne rien rater.</p>
+    <div class="social-grid">
+      <a href="https://www.instagram.com/thedonerfuengi" target="_blank" rel="noopener" class="social-card social-card-instagram">
+        <span class="social-icon">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M12 2c-2.72 0-3.06.01-4.12.06-1.06.05-1.79.22-2.43.47-.66.26-1.22.6-1.77 1.16-.56.55-.9 1.11-1.16 1.77-.25.64-.42 1.37-.47 2.43C2 8.94 2 9.28 2 12s.01 3.06.06 4.12c.05 1.06.22 1.79.47 2.43.26.66.6 1.22 1.16 1.77.55.56 1.11.9 1.77 1.16.64.25 1.37.42 2.43.47C8.94 22 9.28 22 12 22s3.06-.01 4.12-.06c1.06-.05 1.79-.22 2.43-.47.66-.26 1.22-.6 1.77-1.16.56-.55.9-1.11 1.16-1.77.25-.64.42-1.37.47-2.43.05-1.06.06-1.4.06-4.12s-.01-3.06-.06-4.12c-.05-1.06-.22-1.79-.47-2.43-.26-.66-.6-1.22-1.16-1.77-.55-.56-1.11-.9-1.77-1.16-.64-.25-1.37-.42-2.43-.47C15.06 2.01 14.72 2 12 2zm0 1.8c2.67 0 2.99.01 4.04.06.98.05 1.51.21 1.86.35.47.18.8.4 1.15.75.35.35.57.68.75 1.15.14.35.3.88.35 1.86.05 1.05.06 1.37.06 4.04s-.01 2.99-.06 4.04c-.05.98-.21 1.51-.35 1.86-.18.47-.4.8-.75 1.15-.35.35-.68.57-1.15.75-.35.14-.88.3-1.86.35-1.05.05-1.37.06-4.04.06s-2.99-.01-4.04-.06c-.98-.05-1.51-.21-1.86-.35-.47-.18-.8-.4-1.15-.75-.35-.35-.57-.68-.75-1.15-.14-.35-.3-.88-.35-1.86C3.81 14.99 3.8 14.67 3.8 12s.01-2.99.06-4.04c.05-.98.21-1.51.35-1.86.18-.47.4-.8.75-1.15.35-.35.68-.57 1.15-.75.35-.14.88-.3 1.86-.35C9.01 3.81 9.33 3.8 12 3.8zm0 3.05a5.15 5.15 0 1 0 0 10.3 5.15 5.15 0 0 0 0-10.3zm0 8.5a3.35 3.35 0 1 1 0-6.7 3.35 3.35 0 0 1 0 6.7zm5.36-8.7a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg>
+        </span>
+        <span class="social-card-text">
+          <strong>Instagram</strong>
+          <span>@thedonerfuengi</span>
+        </span>
+        <span class="social-arrow">→</span>
+      </a>
+      <a href="https://www.tiktok.com/@thedonerfuengi" target="_blank" rel="noopener" class="social-card social-card-tiktok">
+        <span class="social-icon">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M16.6 5.82c-.9-.98-1.4-2.26-1.4-3.62h-3.14v13.3a2.87 2.87 0 1 1-2.03-2.75V9.6a6.02 6.02 0 1 0 5.17 5.95V9.13a7.02 7.02 0 0 0 4.4 1.54V7.53c-1.13 0-2.18-.35-3-1.71z"/></svg>
+        </span>
+        <span class="social-card-text">
+          <strong>TikTok</strong>
+          <span>@thedonerfuengi</span>
+        </span>
+        <span class="social-arrow">→</span>
+      </a>
+      <a href="https://www.snapchat.com/add/thedonerfuengii" target="_blank" rel="noopener" class="social-card social-card-snapchat">
+        <span class="social-icon">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M12 2.5c2.8 0 4.9 2.1 5 5.1v1.6c0 .2.2.4.5.5.3.1 1 .2 1.4-.2.2-.2.5-.2.7 0 .2.2.2.5 0 .8-.4.6-1.2 1.1-2.1 1.4.1.4.3.7.6 1 .5.5 1.2.8 2 1 .2 0 .4.3.3.5-.2.6-1.3 1-2.1 1.2-.1 0-.2.1-.2.3 0 .2-.1.5-.1.7-.1.3-.4.3-.7.3-.5 0-1-.1-1.6.1-.5.2-1 .6-1.7 1.1-.7.5-1.5 1-2.7 1s-2-.5-2.7-1c-.6-.5-1.2-.9-1.7-1.1-.6-.2-1.1-.1-1.6-.1-.3 0-.6 0-.7-.3 0-.2-.1-.5-.1-.7 0-.2-.1-.3-.2-.3-.8-.2-1.9-.6-2.1-1.2-.1-.2.1-.5.3-.5.8-.2 1.5-.5 2-1 .3-.3.5-.6.6-1-.9-.3-1.7-.8-2.1-1.4-.2-.3-.2-.6 0-.8.2-.2.5-.2.7 0 .4.4 1.1.3 1.4.2.3-.1.5-.3.5-.5V7.6c.1-3 2.2-5.1 5-5.1z"/></svg>
+        </span>
+        <span class="social-card-text">
+          <strong>Snapchat</strong>
+          <span>@thedonerfuengii</span>
+        </span>
+        <span class="social-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="food-marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack"></div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container contact-inner">
+    <div class="contact-info reveal">
+      <span class="eyebrow">Contact</span>
+      <h2>Nous trouver</h2>
+      <ul>
+        <li><strong>Adresse</strong><br>Calle Jacinto Benavente 1, 29640 Fuengirola</li>
+        <li><strong>Téléphone / WhatsApp</strong><br><a href="https://wa.me/34623618108" target="_blank" rel="noopener" class="wa-cta">+34 623 618 108</a></li>
+        <li><strong>Email commandes</strong><br><a href="mailto:thedonerfuengirola@gmail.com">thedonerfuengirola@gmail.com</a></li>
+        <li><strong>Horaires</strong><br>
+          Lundi – Jeudi : 14h00 – 2h00<br>
+          Vendredi : 15h30 – 3h00<br>
+          Samedi : 14h00 – 3h00<br>
+          Dimanche : 14h00 – 2h00
+        </li>
+      </ul>
+      <div class="contact-cta-row">
+        <a href="https://wa.me/34623618108" target="_blank" rel="noopener" class="btn btn-gold wa-cta">Commander sur WhatsApp</a>
+        <a href="https://share.google/VX0D3DO7TA8UNfpD1" target="_blank" rel="noopener" class="btn btn-outline">⭐ Voir / laisser un avis Google</a>
+      </div>
+    </div>
+    <div class="contact-map reveal">
+      <iframe title="Localisation THE DONER" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Calle+Jacinto+Benavente+1,+29640+Fuengirola&output=embed">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <img src="assets/img/logo.jpg" alt="THE DONER" class="footer-logo">
+    <div class="footer-social">
+      <a href="https://www.instagram.com/thedonerfuengi" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2c-2.72 0-3.06.01-4.12.06-1.06.05-1.79.22-2.43.47-.66.26-1.22.6-1.77 1.16-.56.55-.9 1.11-1.16 1.77-.25.64-.42 1.37-.47 2.43C2 8.94 2 9.28 2 12s.01 3.06.06 4.12c.05 1.06.22 1.79.47 2.43.26.66.6 1.22 1.16 1.77.55.56 1.11.9 1.77 1.16.64.25 1.37.42 2.43.47C8.94 22 9.28 22 12 22s3.06-.01 4.12-.06c1.06-.05 1.79-.22 2.43-.47.66-.26 1.22-.6 1.77-1.16.56-.55.9-1.11 1.16-1.77.25-.64.42-1.37.47-2.43.05-1.06.06-1.4.06-4.12s-.01-3.06-.06-4.12c-.05-1.06-.22-1.79-.47-2.43-.26-.66-.6-1.22-1.16-1.77-.55-.56-1.11-.9-1.77-1.16-.64-.25-1.37-.42-2.43-.47C15.06 2.01 14.72 2 12 2zm0 1.8c2.67 0 2.99.01 4.04.06.98.05 1.51.21 1.86.35.47.18.8.4 1.15.75.35.35.57.68.75 1.15.14.35.3.88.35 1.86.05 1.05.06 1.37.06 4.04s-.01 2.99-.06 4.04c-.05.98-.21 1.51-.35 1.86-.18.47-.4.8-.75 1.15-.35.35-.68.57-1.15.75-.35.14-.88.3-1.86.35-1.05.05-1.37.06-4.04.06s-2.99-.01-4.04-.06c-.98-.05-1.51-.21-1.86-.35-.47-.18-.8-.4-1.15-.75-.35-.35-.57-.68-.75-1.15-.14-.35-.3-.88-.35-1.86C3.81 14.99 3.8 14.67 3.8 12s.01-2.99.06-4.04c.05-.98.21-1.51.35-1.86.18-.47.4-.8.75-1.15.35-.35.68-.57 1.15-.75.35-.14.88-.3 1.86-.35C9.01 3.81 9.33 3.8 12 3.8zm0 3.05a5.15 5.15 0 1 0 0 10.3 5.15 5.15 0 0 0 0-10.3zm0 8.5a3.35 3.35 0 1 1 0-6.7 3.35 3.35 0 0 1 0 6.7zm5.36-8.7a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@thedonerfuengi" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M16.6 5.82c-.9-.98-1.4-2.26-1.4-3.62h-3.14v13.3a2.87 2.87 0 1 1-2.03-2.75V9.6a6.02 6.02 0 1 0 5.17 5.95V9.13a7.02 7.02 0 0 0 4.4 1.54V7.53c-1.13 0-2.18-.35-3-1.71z"/></svg>
+      </a>
+      <a href="https://www.snapchat.com/add/thedonerfuengii" target="_blank" rel="noopener" aria-label="Snapchat">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.5c2.8 0 4.9 2.1 5 5.1v1.6c0 .2.2.4.5.5.3.1 1 .2 1.4-.2.2-.2.5-.2.7 0 .2.2.2.5 0 .8-.4.6-1.2 1.1-2.1 1.4.1.4.3.7.6 1 .5.5 1.2.8 2 1 .2 0 .4.3.3.5-.2.6-1.3 1-2.1 1.2-.1 0-.2.1-.2.3 0 .2-.1.5-.1.7-.1.3-.4.3-.7.3-.5 0-1-.1-1.6.1-.5.2-1 .6-1.7 1.1-.7.5-1.5 1-2.7 1s-2-.5-2.7-1c-.6-.5-1.2-.9-1.7-1.1-.6-.2-1.1-.1-1.6-.1-.3 0-.6 0-.7-.3 0-.2-.1-.5-.1-.7 0-.2-.1-.3-.2-.3-.8-.2-1.9-.6-2.1-1.2-.1-.2.1-.5.3-.5.8-.2 1.5-.5 2-1 .3-.3.5-.6.6-1-.9-.3-1.7-.8-2.1-1.4-.2-.3-.2-.6 0-.8.2-.2.5-.2.7 0 .4.4 1.1.3 1.4.2.3-.1.5-.3.5-.5V7.6c.1-3 2.2-5.1 5-5.1z"/></svg>
+      </a>
+    </div>
+    <p>&copy; <span id="year"></span> THE DONER — Fuengirola. Tous droits réservés.</p>
+  </div>
+</footer>
+
+<a href="https://wa.me/34623618108" target="_blank" rel="noopener" class="fab-whatsapp wa-cta" id="fabWhatsapp" aria-label="Commander sur WhatsApp">
+  <svg viewBox="0 0 32 32" width="26" height="26" fill="currentColor"><path d="M16.02 2.67c-7.35 0-13.32 5.97-13.32 13.32 0 2.35.62 4.64 1.79 6.66L2.67 29.33l6.83-1.79a13.26 13.26 0 0 0 6.52 1.71h.01c7.35 0 13.32-5.97 13.32-13.32S23.37 2.67 16.02 2.67zm0 24.36h-.01a11.05 11.05 0 0 1-5.63-1.54l-.4-.24-4.05 1.06 1.08-3.95-.26-.41a11.03 11.03 0 0 1-1.7-5.9c0-6.1 4.97-11.06 11.08-11.06 2.96 0 5.74 1.15 7.83 3.24a10.98 10.98 0 0 1 3.24 7.83c0 6.1-4.97 11.06-11.08 11.06zm6.07-8.29c-.33-.17-1.96-.97-2.27-1.08-.3-.11-.53-.17-.75.17-.22.33-.86 1.08-1.05 1.31-.19.22-.39.25-.72.08-.33-.17-1.4-.51-2.66-1.63-.98-.87-1.65-1.95-1.84-2.28-.19-.33-.02-.5.15-.67.15-.15.33-.39.5-.58.17-.19.22-.33.33-.55.11-.22.06-.42-.03-.58-.08-.17-.75-1.81-1.03-2.48-.27-.65-.55-.56-.75-.57-.19-.01-.42-.01-.64-.01-.22 0-.58.08-.88.42-.3.33-1.15 1.13-1.15 2.75s1.18 3.19 1.34 3.41c.17.22 2.32 3.54 5.62 4.97.79.34 1.4.54 1.88.69.79.25 1.51.22 2.08.13.63-.09 1.96-.8 2.24-1.58.28-.77.28-1.44.19-1.58-.08-.14-.3-.22-.63-.39z"/></svg>
+</a>
+
+<!-- Cart drawer -->
+<div class="customize-overlay" id="customizeOverlay"></div>
+<div class="customize-modal" id="customizeModal">
+  <div class="customize-modal-header">
+    <h3 id="customizeTitle">Personnalisez votre plat</h3>
+    <button id="customizeClose" aria-label="Fermer">&times;</button>
+  </div>
+  <div class="customize-modal-body" id="customizeBody" data-lenis-prevent></div>
+  <div class="customize-modal-footer">
+    <textarea id="customizeNote" placeholder="Ajouter une remarque (optionnel)"></textarea>
+    <div class="customize-modal-actions">
+      <button type="button" class="btn btn-outline" id="customizeCancel">Annuler</button>
+      <button type="button" class="btn btn-gold" id="customizeConfirm">Confirmer — <span id="customizeTotal">0,00 €</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-header">
+    <h3>Votre panier</h3>
+    <button id="closeCart" aria-label="Fermer">&times;</button>
+  </div>
+  <div class="cart-items" id="cartItems" data-lenis-prevent></div>
+  <div class="cart-footer">
+    <div class="cart-subtotals">
+      <div class="cart-line"><span>Sous-total</span><strong id="cartSubtotal">0,00 €</strong></div>
+      <div class="cart-line" id="cartDeliveryLine" hidden><span>Frais de livraison</span><strong id="cartDeliveryFee">0,00 €</strong></div>
+    </div>
+    <div class="cart-total">
+      <span>Total</span>
+      <strong id="cartTotal">0,00 €</strong>
+    </div>
+    <form id="orderForm" class="order-form">
+      <input type="text" id="custName" placeholder="Votre nom" required>
+      <input type="tel" id="custPhone" placeholder="Votre téléphone" required>
+      <select id="custMode">
+        <option value="À emporter">À emporter</option>
+        <option value="Livraison">Livraison</option>
+        <option value="Sur place">Sur place</option>
+      </select>
+      <div id="deliveryAddressWrap" class="delivery-address-wrap" hidden>
+        <div class="address-input-row">
+          <input type="text" id="custAddress" placeholder="Adresse de livraison complète (rue, ville)" autocomplete="off">
+          <button type="button" id="geolocateBtn" class="geolocate-btn" title="Utiliser ma position actuelle" aria-label="Utiliser ma position actuelle">📍</button>
+          <ul id="addressSuggestions" class="address-suggestions" hidden></ul>
+        </div>
+        <p id="deliveryStatus" class="delivery-status"></p>
+      </div>
+      <textarea id="custNote" placeholder="Remarques (optionnel)"></textarea>
+      <button type="submit" class="btn btn-gold btn-block">Envoyer la commande sur WhatsApp</button>
+    </form>
+    <p class="cart-hint">Paiement à la livraison / sur place. Votre commande est envoyée par WhatsApp, on vous confirme directement.</p>
+  </div>
+</aside>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="js/menu-data.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
