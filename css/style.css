@@ -87,6 +87,21 @@ img{max-width:100%; display:block;}
 .burger{display:none; background:none; border:none; cursor:pointer; flex-direction:column; gap:5px; padding:0;}
 .burger span{width:26px; height:2px; background:var(--gold);}
 
+/* ---------- Sélecteur de langue ---------- */
+.lang-switcher{position:relative;}
+.lang-btn{display:flex; align-items:center; gap:.35rem; background:none; border:1px solid rgba(212,175,55,.4); color:var(--cream); border-radius:20px; padding:.35rem .7rem; cursor:pointer; font-size:.82rem; font-weight:600; transition:border-color .2s, background .2s;}
+.lang-btn:hover{border-color:var(--gold); background:rgba(212,175,55,.1);}
+.lang-flag{font-size:1rem; line-height:1;}
+.lang-code{letter-spacing:.03em;}
+.lang-menu{position:absolute; top:calc(100% + 10px); right:0; background:var(--black-2); border:1px solid rgba(212,175,55,.25); border-radius:10px; box-shadow:var(--shadow); min-width:150px; padding:.4rem; list-style:none; z-index:200;}
+.lang-menu li{display:block;}
+.lang-opt{display:flex; align-items:center; gap:.6rem; width:100%; background:none; border:none; color:var(--cream); padding:.5rem .6rem; border-radius:6px; cursor:pointer; font-size:.9rem; text-align:left; transition:background .15s;}
+.lang-opt:hover{background:rgba(212,175,55,.12);}
+.lang-opt.active{color:var(--gold-light); font-weight:600;}
+@media (max-width:720px){
+  .lang-menu{right:0; left:auto;}
+}
+
 /* ---------- Hero ---------- */
 .hero{
   position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center;

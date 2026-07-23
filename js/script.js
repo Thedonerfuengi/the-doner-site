@@ -32,6 +32,14 @@ document.querySelectorAll(".wa-cta").forEach(a => {
 const tabsEl = document.getElementById("menuTabs");
 const panelsEl = document.getElementById("menuPanels");
 
+function findMenuItemById(id) {
+  for (const cat of MENU) {
+    const found = cat.items.find(it => it.id === id);
+    if (found) return found;
+  }
+  return null;
+}
+
 function renderMenu() {
   const activeId = document.querySelector(".menu-tab.active")?.dataset.target || MENU[0].id;
   tabsEl.innerHTML = "";
@@ -41,7 +49,7 @@ function renderMenu() {
     const isActive = cat.id === activeId;
     const tab = document.createElement("button");
     tab.className = "menu-tab" + (isActive ? " active" : "");
-    tab.textContent = cat.label;
+    tab.textContent = translatedCategoryLabel(cat);
     tab.dataset.target = cat.id;
     tab.addEventListener("click", () => switchTab(cat.id));
     tabsEl.appendChild(tab);
@@ -137,17 +145,19 @@ function buildCard(item) {
   const card = document.createElement("div");
   card.className = "menu-card" + (item.available === false ? " unavailable" : "");
 
+  const displayName = translatedItemName(item);
+
   if (item.img) {
     const media = document.createElement("div");
     media.className = "menu-card-media";
-    media.innerHTML = `<img src="${item.img}" alt="${item.name}" loading="lazy">`;
+    media.innerHTML = `<img src="${item.img}" alt="${displayName}" loading="lazy">`;
     card.appendChild(media);
   }
 
   if (item.available === false) {
     const badge = document.createElement("span");
     badge.className = "menu-card-oos";
-    badge.textContent = "Indisponible";
+    badge.textContent = t("unavailable");
     card.appendChild(badge);
   }
 
@@ -159,12 +169,12 @@ function buildCard(item) {
 
   const top = document.createElement("div");
   top.className = "menu-card-top";
-  top.innerHTML = `<h4>${item.name}</h4><span class="menu-price">${isCustomizable ? "dès " : ""}${item.basePrice.toFixed(2).replace(".", ",")} €</span>`;
+  top.innerHTML = `<h4>${displayName}</h4><span class="menu-price">${isCustomizable ? t("price_from_prefix") + " " : ""}${item.basePrice.toFixed(2).replace(".", ",")} €</span>`;
   body.appendChild(top);
 
   const desc = document.createElement("p");
   desc.className = "menu-desc";
-  desc.textContent = item.desc;
+  desc.textContent = translatedItemDesc(item);
   body.appendChild(desc);
 
   const actions = document.createElement("div");
@@ -187,30 +197,30 @@ function buildCard(item) {
   addBtn.className = "add-btn";
 
   function flashAdded() {
-    addBtn.textContent = "Ajouté ✓";
+    addBtn.textContent = t("added_btn");
     addBtn.classList.add("added");
-    setTimeout(() => { addBtn.textContent = isCustomizable ? "Personnaliser" : "Ajouter"; addBtn.classList.remove("added"); }, 1200);
+    setTimeout(() => { addBtn.textContent = isCustomizable ? t("customize_btn") : t("add_btn"); addBtn.classList.remove("added"); }, 1200);
     qty = 1;
     qtyWrap.querySelector("span").textContent = qty;
     bounceCartIcon();
-    showToast(`${item.name} ajouté au panier`);
+    showToast(t("toast_added", { name: displayName }));
   }
 
   if (isCustomizable) {
-    addBtn.textContent = "Personnaliser";
+    addBtn.textContent = t("customize_btn");
     addBtn.addEventListener("click", () => {
       openCustomizeModal(item, qty, flashAdded);
     });
   } else {
-    addBtn.textContent = "Ajouter";
+    addBtn.textContent = t("add_btn");
     addBtn.addEventListener("click", () => {
-      addToCart({ name: item.name, meta: "", unitPrice: item.basePrice, qty });
+      addToCart({ itemId: item.id, name: item.name, selections: null, unitPrice: item.basePrice, qty });
       flashAdded();
     });
   }
   if (item.available === false) {
     addBtn.disabled = true;
-    addBtn.textContent = "Indisponible";
+    addBtn.textContent = t("unavailable");
     qtyWrap.querySelectorAll("button").forEach(b => b.disabled = true);
   }
   actions.appendChild(addBtn);
@@ -226,7 +236,7 @@ function openCustomizeModal(item, initialQty, onConfirm) {
   const bodyEl = document.getElementById("customizeBody");
   const totalEl = document.getElementById("customizeTotal");
   const noteEl = document.getElementById("customizeNote");
-  document.getElementById("customizeTitle").textContent = item.name;
+  document.getElementById("customizeTitle").textContent = translatedItemName(item);
   noteEl.value = "";
   bodyEl.innerHTML = "";
 
@@ -277,7 +287,7 @@ function openCustomizeModal(item, initialQty, onConfirm) {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "customize-opt" + (selected ? " selected" : "") + (disabled ? " disabled" : "");
-    btn.innerHTML = `<span>${label}</span>${priceLabel ? `<small>${priceLabel}</small>` : ""}${disabled ? `<small class="oos">Rupture</small>` : ""}`;
+    btn.innerHTML = `<span>${label}</span>${priceLabel ? `<small>${priceLabel}</small>` : ""}${disabled ? `<small class="oos">${t("oos_badge")}</small>` : ""}`;
     if (disabled) {
       btn.disabled = true;
     } else {
@@ -293,12 +303,12 @@ function openCustomizeModal(item, initialQty, onConfirm) {
   if (item.baseChoices) {
     const grid = optionGrid();
     item.baseChoices.forEach(bc => {
-      grid.appendChild(makeButton(bc.label, bc.price.toFixed(2).replace(".", ",") + " €", state.base === bc, bc.available === false, () => {
+      grid.appendChild(makeButton(tt(bc.label), bc.price.toFixed(2).replace(".", ",") + " €", state.base === bc, bc.available === false, () => {
         state.base = bc;
         rerender();
       }));
     });
-    section(item.baseLabel || "Choisis ta base", grid);
+    section(item.baseLabel ? tt(item.baseLabel) : t("base_label_default"), grid);
   }
 
   if (item.onlyBase) return;
@@ -307,60 +317,60 @@ function openCustomizeModal(item, initialQty, onConfirm) {
   if (item.meatChoices) {
     const grid = optionGrid();
     item.meatChoices.forEach(m => {
-      grid.appendChild(makeButton(m, null, state.meat === m, false, () => {
+      grid.appendChild(makeButton(tt(m), null, state.meat === m, false, () => {
         state.meat = m;
         rerender();
       }));
     });
-    section("Choisis ta viande", grid);
+    section(t("section_meat"), grid);
   }
 
   // 3. Sauce
   {
     const grid = optionGrid();
     SAUCES.forEach(s => {
-      grid.appendChild(makeButton(s, null, state.sauce === s, false, () => {
+      grid.appendChild(makeButton(tt(s), null, state.sauce === s, false, () => {
         state.sauce = state.sauce === s ? null : s;
         rerender();
       }));
     });
-    section("Choisis ta sauce", grid);
+    section(t("section_sauce"), grid);
   }
 
   // 4. Extra
   {
     const grid = optionGrid();
     EXTRA_PROTEIN.forEach(e => {
-      grid.appendChild(makeButton(e.name, "+" + e.price.toFixed(2).replace(".", ",") + " €", state.extras.has(e.name), !!e.outOfStock, () => {
+      grid.appendChild(makeButton(tt(e.name), "+" + e.price.toFixed(2).replace(".", ",") + " €", state.extras.has(e.name), !!e.outOfStock, () => {
         state.extras.has(e.name) ? state.extras.delete(e.name) : state.extras.add(e.name);
         rerender();
       }));
     });
-    section("Envie d'un extra ?", grid);
+    section(t("section_extra"), grid);
   }
 
   // 5. Crudités
   {
     const grid = optionGrid();
     CRUDITES.forEach(c => {
-      grid.appendChild(makeButton(c.name, c.price ? "+" + c.price.toFixed(2).replace(".", ",") + " €" : null, state.crudites.has(c.name), false, () => {
+      grid.appendChild(makeButton(tt(c.name), c.price ? "+" + c.price.toFixed(2).replace(".", ",") + " €" : null, state.crudites.has(c.name), false, () => {
         state.crudites.has(c.name) ? state.crudites.delete(c.name) : state.crudites.add(c.name);
         rerender();
       }));
     });
-    section("Choisis tes crudités", grid);
+    section(t("section_crudites"), grid);
   }
 
   // 6. Supplément fromage
   {
     const grid = optionGrid();
     SUPPLEMENTS_FROMAGE.forEach(f => {
-      grid.appendChild(makeButton(f.name, "+" + f.price.toFixed(2).replace(".", ",") + " €", state.fromages.has(f.name), false, () => {
+      grid.appendChild(makeButton(tt(f.name), "+" + f.price.toFixed(2).replace(".", ",") + " €", state.fromages.has(f.name), false, () => {
         state.fromages.has(f.name) ? state.fromages.delete(f.name) : state.fromages.add(f.name);
         rerender();
       }));
     });
-    section("Choisis ton supplément", grid);
+    section(t("section_cheese"), grid);
   }
 
   // 7. Accompagnement (qty stepper)
@@ -372,7 +382,7 @@ function openCustomizeModal(item, initialQty, onConfirm) {
       row.className = "customize-opt customize-opt-qty";
       const n = state.accompagnements[a.name] || 0;
       row.innerHTML = `
-        <span>${a.name}<small>+${a.price.toFixed(2).replace(".", ",")} €</small></span>
+        <span>${tt(a.name)}<small>+${a.price.toFixed(2).replace(".", ",")} €</small></span>
         <div class="qty qty-sm">
           <button type="button" data-dir="-1">−</button><span>${n}</span><button type="button" data-dir="1">+</button>
         </div>`;
@@ -385,19 +395,19 @@ function openCustomizeModal(item, initialQty, onConfirm) {
       });
       grid.appendChild(row);
     });
-    section("Choisis ton accompagnement", grid);
+    section(t("section_accomp"), grid);
   }
 
   // 8. Boisson
   {
     const grid = optionGrid();
     DRINKS.forEach(d => {
-      grid.appendChild(makeButton(d, "+" + DRINK_PRICE.toFixed(2).replace(".", ",") + " €", state.boisson === d, false, () => {
+      grid.appendChild(makeButton(tt(d), "+" + DRINK_PRICE.toFixed(2).replace(".", ",") + " €", state.boisson === d, false, () => {
         state.boisson = state.boisson === d ? null : d;
         rerender();
       }));
     });
-    section("Choisis ta boisson", grid);
+    section(t("section_drink"), grid);
   }
   } // end renderBody
 
@@ -428,22 +438,23 @@ function openCustomizeModal(item, initialQty, onConfirm) {
   cancelBtn.onclick = closeModal;
 
   confirmBtn.onclick = () => {
-    const metaParts = [];
-    if (state.base) metaParts.push(state.base.label);
-    if (state.meat) metaParts.push("Viande : " + state.meat);
-    if (state.sauce) metaParts.push("Sauce : " + state.sauce);
-    if (state.extras.size) metaParts.push("Extra : " + [...state.extras].join(", "));
-    if (state.crudites.size) metaParts.push([...state.crudites].join(", "));
-    if (state.fromages.size) metaParts.push("Fromage : " + [...state.fromages].join(", "));
-    const accompText = ACCOMPAGNEMENTS_STEP.filter(a => state.accompagnements[a.name] > 0)
-      .map(a => `${a.name} x${state.accompagnements[a.name]}`).join(", ");
-    if (accompText) metaParts.push(accompText);
-    if (state.boisson) metaParts.push("Boisson : " + state.boisson);
-    if (noteEl.value.trim()) metaParts.push("Note : " + noteEl.value.trim());
+    const selections = {
+      baseLabel: state.base ? state.base.label : null,
+      meat: state.meat,
+      sauce: state.sauce,
+      extras: [...state.extras],
+      crudites: [...state.crudites],
+      fromages: [...state.fromages],
+      accompagnements: ACCOMPAGNEMENTS_STEP.filter(a => state.accompagnements[a.name] > 0)
+        .map(a => ({ name: a.name, qty: state.accompagnements[a.name] })),
+      boisson: state.boisson,
+      note: noteEl.value.trim()
+    };
 
     addToCart({
+      itemId: item.id,
       name: item.name,
-      meta: metaParts.join(" · "),
+      selections,
       unitPrice: unitPrice(),
       qty: initialQty
     });
@@ -453,9 +464,35 @@ function openCustomizeModal(item, initialQty, onConfirm) {
   };
 }
 
+// Construit le texte des options choisies. `translate` traduit chaque valeur (identité pour le message WhatsApp,
+// tt() pour l'affichage dans le panier selon la langue du client), `labels` fournit les intitulés de champ.
+function buildSelectionsText(selections, translate, labels) {
+  if (!selections) return "";
+  const parts = [];
+  if (selections.baseLabel) parts.push(translate(selections.baseLabel));
+  if (selections.meat) parts.push(labels.meat + " : " + translate(selections.meat));
+  if (selections.sauce) parts.push(labels.sauce + " : " + translate(selections.sauce));
+  if (selections.extras.length) parts.push(labels.extra + " : " + selections.extras.map(translate).join(", "));
+  if (selections.crudites.length) parts.push(selections.crudites.map(translate).join(", "));
+  if (selections.fromages.length) parts.push(labels.cheese + " : " + selections.fromages.map(translate).join(", "));
+  if (selections.accompagnements.length) parts.push(selections.accompagnements.map(a => `${translate(a.name)} x${a.qty}`).join(", "));
+  if (selections.boisson) parts.push(labels.drink + " : " + translate(selections.boisson));
+  if (selections.note) parts.push(labels.note + " : " + selections.note);
+  return parts.join(" · ");
+}
+
+function frenchFieldLabels() {
+  return { meat: "Viande", sauce: "Sauce", extra: "Extra", cheese: "Fromage", drink: "Boisson", note: "Note" };
+}
+
+function translatedFieldLabels() {
+  return { meat: t("field_meat"), sauce: t("field_sauce"), extra: t("field_extra"), cheese: t("field_cheese"), drink: t("field_drink"), note: t("field_note") };
+}
+
 // ---------- Cart logic ----------
 function addToCart(entry) {
-  const existing = cart.find(c => c.name === entry.name && c.meta === entry.meta);
+  entry.selectionsKey = JSON.stringify(entry.selections || null);
+  const existing = cart.find(c => c.itemId === entry.itemId && c.selectionsKey === entry.selectionsKey);
   if (existing) {
     existing.qty += entry.qty;
   } else {
@@ -506,18 +543,21 @@ function renderCart() {
 
   itemsEl.innerHTML = "";
   if (cart.length === 0) {
-    itemsEl.innerHTML = `<p class="cart-empty">Votre panier est vide pour l'instant.</p>`;
+    itemsEl.innerHTML = `<p class="cart-empty">${t("cart_empty")}</p>`;
     return;
   }
 
   cart.forEach((c, i) => {
+    const menuItem = findMenuItemById(c.itemId);
+    const displayName = menuItem ? translatedItemName(menuItem) : c.name;
+    const displayMeta = buildSelectionsText(c.selections, tt, translatedFieldLabels());
     const row = document.createElement("div");
     row.className = "cart-item";
     row.innerHTML = `
       <div>
-        <div class="cart-item-name">${c.qty} × ${c.name}</div>
-        ${c.meta ? `<div class="cart-item-meta">${c.meta}</div>` : ""}
-        <button class="cart-item-remove" data-i="${i}">Retirer</button>
+        <div class="cart-item-name">${c.qty} × ${displayName}</div>
+        ${displayMeta ? `<div class="cart-item-meta">${displayMeta}</div>` : ""}
+        <button class="cart-item-remove" data-i="${i}">${t("remove_btn")}</button>
       </div>
       <div class="cart-item-price">${(c.unitPrice * c.qty).toFixed(2).replace(".", ",")} €</div>
     `;
@@ -588,27 +628,27 @@ function applyDeliveryFromCoords(lat, lon, addressLabel) {
 
   if (fee == null) {
     deliveryState = { fee: 0, distanceKm: km, status: "out-of-range", address: addressLabel };
-    setDeliveryStatus(`Adresse à ${km.toFixed(1)} km — hors zone de livraison (20 km max). Contactez-nous directement.`, "error");
+    setDeliveryStatus(t("delivery_out_of_range", { km: km.toFixed(1) }), "error");
   } else {
     deliveryState = { fee, distanceKm: km, status: "success", address: addressLabel };
-    setDeliveryStatus(`Distance : ~${km.toFixed(1)} km — Frais de livraison : ${fee.toFixed(2).replace(".", ",")} €`, "success");
+    setDeliveryStatus(t("delivery_success", { km: km.toFixed(1), fee: fee.toFixed(2).replace(".", ",") }), "success");
   }
   renderCart();
 }
 
 async function computeDeliveryFee(address) {
   deliveryState.status = "loading";
-  setDeliveryStatus("Calcul des frais de livraison…", "loading");
+  setDeliveryStatus(t("delivery_calculating"), "loading");
   try {
     const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=es&viewbox=${NOMINATIM_VIEWBOX}&bounded=0&q=${encodeURIComponent(address + ", Málaga, España")}`;
-    const res = await fetch(url, { headers: { "Accept-Language": "fr" } });
+    const res = await fetch(url, { headers: { "Accept-Language": currentLang } });
     if (!res.ok) throw new Error("http");
     const data = await res.json();
     if (!data.length) throw new Error("not-found");
     applyDeliveryFromCoords(parseFloat(data[0].lat), parseFloat(data[0].lon), address);
   } catch (e) {
     deliveryState = { fee: 0, distanceKm: null, status: "error", address };
-    setDeliveryStatus("Adresse introuvable — précisez la rue et la ville.", "error");
+    setDeliveryStatus(t("delivery_not_found"), "error");
     renderCart();
   }
 }
@@ -625,7 +665,7 @@ function hideSuggestions() {
 async function fetchAddressSuggestions(query) {
   try {
     const url = `https://nominatim.openstreetmap.org/search?format=json&limit=5&countrycodes=es&viewbox=${NOMINATIM_VIEWBOX}&bounded=0&addressdetails=1&q=${encodeURIComponent(query + ", Málaga, España")}`;
-    const res = await fetch(url, { headers: { "Accept-Language": "fr" } });
+    const res = await fetch(url, { headers: { "Accept-Language": currentLang } });
     if (!res.ok) return;
     const data = await res.json();
     if (!data.length || custAddressEl.value.trim() !== query) return;
@@ -660,13 +700,13 @@ document.addEventListener("click", (e) => {
 const geolocateBtn = document.getElementById("geolocateBtn");
 geolocateBtn.addEventListener("click", () => {
   if (!navigator.geolocation) {
-    setDeliveryStatus("La géolocalisation n'est pas disponible sur cet appareil.", "error");
+    setDeliveryStatus(t("geoloc_unavailable"), "error");
     return;
   }
   const previousState = deliveryState; // restauré si la géolocalisation échoue, pour ne pas invalider une adresse déjà validée
   geolocateBtn.classList.add("locating");
   deliveryState = { ...deliveryState, status: "loading" };
-  setDeliveryStatus("Localisation en cours…", "loading");
+  setDeliveryStatus(t("geoloc_locating"), "loading");
   hideSuggestions();
 
   navigator.geolocation.getCurrentPosition(
@@ -674,7 +714,7 @@ geolocateBtn.addEventListener("click", () => {
       const { latitude, longitude } = pos.coords;
       let label = `${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
       try {
-        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`, { headers: { "Accept-Language": "fr" } });
+        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`, { headers: { "Accept-Language": currentLang } });
         if (res.ok) {
           const data = await res.json();
           if (data && data.display_name) label = data.display_name;
@@ -689,10 +729,10 @@ geolocateBtn.addEventListener("click", () => {
       if (previousState.status === "success") {
         // Un échec de géolocalisation n'invalide pas une adresse déjà validée avec succès juste avant.
         deliveryState = previousState;
-        setDeliveryStatus(`Distance : ~${previousState.distanceKm.toFixed(1)} km — Frais de livraison : ${previousState.fee.toFixed(2).replace(".", ",")} €`, "success");
+        setDeliveryStatus(t("delivery_success", { km: previousState.distanceKm.toFixed(1), fee: previousState.fee.toFixed(2).replace(".", ",") }), "success");
       } else {
         deliveryState = { fee: 0, distanceKm: null, status: "error", address: "" };
-        setDeliveryStatus("Position indisponible — vérifiez que la géolocalisation est autorisée, ou saisissez l'adresse manuellement.", "error");
+        setDeliveryStatus(t("geoloc_error"), "error");
       }
       renderCart();
     },
@@ -729,7 +769,7 @@ cartOverlay.addEventListener("click", closeCartDrawer);
 document.getElementById("orderForm").addEventListener("submit", (e) => {
   e.preventDefault();
   if (cart.length === 0) {
-    showToast("Votre panier est vide");
+    showToast(t("toast_cart_empty"));
     return;
   }
   const name = document.getElementById("custName").value.trim();
@@ -740,24 +780,27 @@ document.getElementById("orderForm").addEventListener("submit", (e) => {
 
   if (mode === "Livraison") {
     if (!address) {
-      setDeliveryStatus("Merci de renseigner votre adresse de livraison.", "error");
+      setDeliveryStatus(t("address_required"), "error");
       custAddressEl.focus();
       return;
     }
     if (deliveryState.status === "loading") {
-      showToast("Calcul des frais de livraison en cours…");
+      showToast(t("toast_calculating"));
       return;
     }
     if (deliveryState.status !== "success" || deliveryState.address !== address) {
-      showToast("Merci de patienter pendant le calcul des frais de livraison");
+      showToast(t("toast_wait_calc"));
       computeDeliveryFee(address);
       return;
     }
   }
 
+  // Le message envoyé au restaurant reste toujours en français, quelle que soit la langue du site,
+  // pour que l'équipe (francophone) puisse le lire directement.
   let msg = `Nouvelle commande THE DONER\n\n`;
   cart.forEach(c => {
-    msg += `• ${c.qty} × ${c.name}${c.meta ? " (" + c.meta + ")" : ""} — ${(c.unitPrice * c.qty).toFixed(2).replace(".", ",")} €\n`;
+    const frenchMeta = buildSelectionsText(c.selections, (x) => x, frenchFieldLabels());
+    msg += `• ${c.qty} × ${c.name}${frenchMeta ? " (" + frenchMeta + ")" : ""} — ${(c.unitPrice * c.qty).toFixed(2).replace(".", ",")} €\n`;
   });
   msg += `\nSous-total : ${cartSubtotal().toFixed(2).replace(".", ",")} €\n`;
   if (mode === "Livraison" && deliveryState.status === "success") {
